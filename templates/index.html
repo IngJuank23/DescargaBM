@@ -6,13 +6,23 @@
 </head>
 <body>
     <h1>🎧 Descargar Videos o Música</h1>
+
     <form method="POST">
         <input type="text" name="url" placeholder="Pega el enlace aquí" required>
         <br><br>
+
+        <!-- CAPTCHA -->
+        <label for="captcha">
+            ¿Cuánto es {{ captcha.a }} + {{ captcha.b }}?
+        </label>
+        <input type="text" name="captcha" required>
+        <br><br>
+
         <button name="formato" value="mp4">Descargar MP4 🎥</button>
         <button name="formato" value="mp3">Descargar MP3 🎵</button>
     </form>
 
+    <!-- Flash de errores generales -->
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul>
@@ -22,5 +32,14 @@
         </ul>
       {% endif %}
     {% endwith %}
+
+    <!-- Error de CAPTCHA -->
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Contador -->
+    <p><strong>🔢 Descargas realizadas:</strong> {{ contador }}</p>
 </body>
 </html>
+
