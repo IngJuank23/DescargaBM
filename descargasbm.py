@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, redirect, url_for, flash 
+from flask import Flask, render_template, request, send_file, redirect, url_for, flash
 import yt_dlp
 import os
 import uuid
@@ -16,7 +16,8 @@ def descargar_video(url, formato='mp4'):
         'format': 'bestaudio/best' if formato == 'mp3' else 'mp4',
         'outtmpl': output_template,
         'noplaylist': True,
-        'quiet': True
+        'quiet': True,
+        'cookiefile': 'cookies.txt'  # ✅ Usamos las cookies aquí
     }
 
     if formato == 'mp3':
@@ -53,6 +54,8 @@ def descargar(filename):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
+
 
 
 
