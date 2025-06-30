@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: descargador-web
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn DescargasBM:app"
+    plan: free
